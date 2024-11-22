@@ -1,25 +1,27 @@
 ﻿using System.Drawing;
+using System.Text.Json.Serialization;
 
 namespace ColourSortSolver;
-
-public class ColourContainer
+/// <summary>
+/// Represents a container used in a <see cref="Puzzle"/> to hold and manage colours.
+/// </summary>
+/// <param name="size">The size of the container, indicating the maximum number of colours it can hold.</param>
+/// <param name="position">The position of the container within the solver.</param>
+public class Container(int size, int position)
 {
-    public ColourContainer(int size, int position)
+    [JsonConstructor]
+    public Container(int size, int position, ICollection<KnownColor> slots) : this(size, position)
     {
-        Size = size;
-        Position = position;
-        Slots = new List<KnownColor>(size);
+        if (slots != null)
+        {
+            Slots = slots;
+        }
     }
 
-    public ColourContainer(int size, int position, ICollection<KnownColor> initialColors) : this(size, position)
-    {
-        Slots = initialColors ?? new List<KnownColor>(size);
-    }
+    public int Size { get; } = size;
+    public int Position { get; } = position;
 
-    public int Size { get; }
-    public int Position { get; }
-
-    public ICollection<KnownColor> Slots { get; }
+    public ICollection<KnownColor> Slots { get; } = new List<KnownColor>(size);
 
     public bool IsFull => Slots.Count == Size;
 
@@ -38,8 +40,8 @@ public class ColourContainer
         Slots.Add(colour);
     }
 
-    public ColourContainer Clone()
+    public Container Clone()
     {
-        return new ColourContainer(Size, Position, new List<KnownColor>(Slots));
+        return new Container(Size, Position, new List<KnownColor>(Slots));
     }
 }

@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 
 namespace ColourSortSolver.Tests.ContainerTests
 {
-    [TestSubject(typeof(ColourContainer))]
+    [TestSubject(typeof(Container))]
     public class ConstructorTests
     {
         [Theory]
@@ -13,7 +13,7 @@ namespace ColourSortSolver.Tests.ContainerTests
         [InlineData(10)]
         public void ConstructorShouldInitializeSize(int size)
         {
-            var container = new ColourContainer(size, 0);
+            var container = new Container(size, 0);
             container.Size.Should().Be(size);
         }
 
@@ -23,14 +23,14 @@ namespace ColourSortSolver.Tests.ContainerTests
         [InlineData(2)]
         public void ConstructorShouldInitializePosition(int position)
         {
-            var container = new ColourContainer(1, position);
+            var container = new Container(1, position);
             container.Position.Should().Be(position);
         }
 
         [Fact]
         public void ConstructorShouldInitializeSlots()
         {
-            var container = new ColourContainer(5, 1);
+            var container = new Container(5, 1);
             container.Slots.Should().BeEmpty();
         }
 
@@ -38,7 +38,7 @@ namespace ColourSortSolver.Tests.ContainerTests
         public void ConstructorWithInitialColorsShouldInitializeSlots()
         {
             var initialColors = new List<KnownColor> { KnownColor.Red, KnownColor.Blue };
-            var container = new ColourContainer(5, 0, initialColors);
+            var container = new Container(5, 0, initialColors);
             container.Slots.Should().BeEquivalentTo(initialColors);
         }
     }

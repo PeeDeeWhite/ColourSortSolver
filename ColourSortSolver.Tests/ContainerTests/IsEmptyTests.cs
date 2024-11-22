@@ -4,13 +4,13 @@ using JetBrains.Annotations;
 
 namespace ColourSortSolver.Tests.ContainerTests
 {
-    [TestSubject(typeof(ColourContainer))]
+    [TestSubject(typeof(Container))]
     public class IsEmptyTests
     {
         [Fact]
         public void IsEmptyShouldReturnTrueWhenSlotsCountIsZero()
         {
-            var container = new ColourContainer(3, 0);
+            var container = new Container(3, 0);
             container.IsEmpty.Should().BeTrue();
         }
 
@@ -18,7 +18,7 @@ namespace ColourSortSolver.Tests.ContainerTests
         public void IsEmptyShouldReturnFalseWhenSlotsCountIsGreaterThanZero()
         {
             var initialColors = new List<KnownColor> { KnownColor.Red };
-            var container = new ColourContainer(3, 0, initialColors);
+            var container = new Container(3, 0, initialColors);
             container.IsEmpty.Should().BeFalse();
         }
 

@@ -1,5 +1,8 @@
 ﻿namespace ColourSortSolver
 {
+    /// <summary>
+    /// Provides functionality to solve a given <see cref="Puzzle"/> by making valid moves until it is solved.
+    /// </summary>
     public class Solver
     {
         public Solver(Puzzle puzzle)

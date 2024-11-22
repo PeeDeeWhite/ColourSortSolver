@@ -5,9 +5,14 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColourSortSolver.Console", "ColourSortSolver.Console\ColourSortSolver.Console.csproj", "{D3BF85A2-3E16-4708-8ACC-6D97CD3B5A71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColourSortSolver", "ColourSortSolver\ColourSortSolver.csproj", "{B789B0A2-0DEB-4A78-901E-E88AC9C7A17C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColourSortSolver", "ColourSortSolver\ColourSortSolver.csproj", "{B789B0A2-0DEB-4A78-901E-E88AC9C7A17C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColourSortSolver.Tests", "ColourSortSolver.Tests\ColourSortSolver.Tests.csproj", "{142AC9FE-1ED4-464C-B74B-385C9CFEC8D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColourSortSolver.Tests", "ColourSortSolver.Tests\ColourSortSolver.Tests.csproj", "{142AC9FE-1ED4-464C-B74B-385C9CFEC8D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9CFE0AA8-9636-46EE-85F8-A45DC01F2B1C}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

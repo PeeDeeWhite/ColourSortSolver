@@ -1,1 +1,1 @@
-# ColourSortSolver
+# Colour Sort Solver

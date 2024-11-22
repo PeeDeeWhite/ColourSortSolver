@@ -1,0 +1,13 @@
+{
+  "Containers": [
+    {
+      "Size": 4,
+      "Position": 0,
+      "Slots": [
+        "Red",
+        "Orange",
+        "Salmon"
+      ]
+    }
+  ] 
+}

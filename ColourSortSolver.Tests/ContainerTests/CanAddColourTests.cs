@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 
 namespace ColourSortSolver.Tests.ContainerTests
 {
-    [TestSubject(typeof(ColourContainer))]
+    [TestSubject(typeof(Container))]
     public class CanAddColourTests
     {
         [Theory]
@@ -12,7 +12,7 @@ namespace ColourSortSolver.Tests.ContainerTests
         [InlineData(KnownColor.Blue, true)]
         public void CanAddColourShouldReturnExpectedResultWhenContainerIsEmpty(KnownColor colour, bool expected)
         {
-            var container = new ColourContainer(3, 0);
+            var container = new Container(3, 0);
             container.CanAddColour(colour).Should().Be(expected);
         }
 
@@ -22,7 +22,7 @@ namespace ColourSortSolver.Tests.ContainerTests
         public void CanAddColourShouldReturnExpectedResultWhenContainerIsNotFullAndLastColourMatches(KnownColor colour, bool expected)
         {
             var initialColors = new List<KnownColor> { KnownColor.Red };
-            var container = new ColourContainer(3, 0, initialColors);
+            var container = new Container(3, 0, initialColors);
             container.CanAddColour(colour).Should().Be(expected);
         }
 
@@ -30,7 +30,7 @@ namespace ColourSortSolver.Tests.ContainerTests
         public void CanAddColourShouldReturnFalse_WhenContainerIsFull()
         {
             var initialColors = new List<KnownColor> { KnownColor.Red, KnownColor.Red, KnownColor.Red };
-            var container = new ColourContainer(3, 0, initialColors);
+            var container = new Container(3, 0, initialColors);
             container.CanAddColour(KnownColor.Red).Should().BeFalse();
         }
     }

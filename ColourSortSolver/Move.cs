@@ -2,21 +2,25 @@
 
 namespace ColourSortSolver;
 
+/// <summary>
+/// Represents a move in a <see cref="Solution"/>> to solve a Colour Sort puzzle. A move involves transferring a specified number of colours
+/// from a source container to a destination container.
+/// </summary>
 public class Move
 {
-    public Move(KnownColor colour, ColourContainer source, int sourceIndex, ColourContainer destination, int destinationIndex, int noOfColours)
+    public Move(KnownColor colour, Container source, int sourceIndex, Container destination, int destinationIndex, int noOfColours)
     {
         Colour = colour;
-        Source = source;
+        Source = source.Clone();
         SourceIndex = sourceIndex;
-        Destination = destination;
+        Destination = destination.Clone();
         DestinationIndex = destinationIndex;
         NoOfColours = noOfColours;
     }
 
-    public ColourContainer Source { get; }
+    public Container Source { get; }
     public int SourceIndex { get; }
-    public ColourContainer Destination { get; }
+    public Container Destination { get; }
     public int DestinationIndex { get; }
     public KnownColor Colour { get; }
 

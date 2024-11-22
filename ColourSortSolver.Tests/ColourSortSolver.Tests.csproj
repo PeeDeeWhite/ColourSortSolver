@@ -25,11 +25,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ColourSortSolver.Console\ColourSortSolver.Console.csproj" />
     <ProjectReference Include="..\ColourSortSolver\ColourSortSolver.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="PuzzleLoaderTests\invalidpuzzle.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="PuzzleLoaderTests\validpuzzle.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
