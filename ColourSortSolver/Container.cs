@@ -6,11 +6,11 @@ namespace ColourSortSolver;
 /// Represents a container used in a <see cref="Puzzle"/> to hold and manage colours.
 /// </summary>
 /// <param name="size">The size of the container, indicating the maximum number of colours it can hold.</param>
-/// <param name="position">The position of the container within the solver.</param>
+/// <param name="position">The position of the container within the Puzzle.</param>
 public class Container(int size, int position)
 {
     [JsonConstructor]
-    public Container(int size, int position, ICollection<KnownColor> slots) : this(size, position)
+    public Container(int size, int position, IList<KnownColor> slots) : this(size, position)
     {
         if (slots != null)
         {
@@ -21,7 +21,7 @@ public class Container(int size, int position)
     public int Size { get; } = size;
     public int Position { get; } = position;
 
-    public ICollection<KnownColor> Slots { get; } = new List<KnownColor>(size);
+    public IList<KnownColor> Slots { get; } = new List<KnownColor>(size);
 
     public bool IsFull => Slots.Count == Size;
 

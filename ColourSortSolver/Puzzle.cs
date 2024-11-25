@@ -97,7 +97,7 @@ public class Puzzle
 
                 if (toContainer.CanAddColour(fromContainer.Slots.Last()))
                 {
-                    availableMoves.Add(new Move(fromContainer.MoveableColours.First(), coloursToMove.Count, fromContainer, toContainer));
+                    availableMoves.Add(new Move(fromContainer.MoveableColours.First(), coloursToMove.Count, fromContainer.Position, toContainer.Position));
                 }
             }
         }
@@ -111,8 +111,14 @@ public class Puzzle
         
         for (var i = 0; i < move.NoOfColours; i++)
         {
-            Containers[move.Source.Position].Slots.Remove(move.Colour);
-            Containers[move.Destination.Position].Slots.Add(move.Colour);
+            Containers[move.SourceIndex].Slots.Remove(move.Colour);
+            Containers[move.DestinationIndex].Slots.Add(move.Colour);
         }
+    }
+
+    public Puzzle Clone()
+    {
+        var clonedContainers = Containers.Select(container => container.Clone()).ToList();
+        return new(clonedContainers);
     }
 }

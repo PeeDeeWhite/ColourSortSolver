@@ -6,8 +6,49 @@
       "Slots": [
         "Red",
         "Orange",
-        "Salmon"
+        "Salmon",
+        "Green"
       ]
+    },
+    {
+      "Size": 4,
+      "Position": 1,
+      "Slots": [
+        "Red",
+        "Orange",
+        "Salmon",
+        "Green"
+      ]
+    },
+    {
+      "Size": 4,
+      "Position": 2,
+      "Slots": [
+        "Red",
+        "Orange",
+        "Salmon",
+        "Green"
+      ]
+    },
+    {
+      "Size": 4,
+      "Position": 3,
+      "Slots": [
+        "Red",
+        "Orange",
+        "Salmon",
+        "Green"
+      ]
+    },
+    {
+      "Size": 4,
+      "Position": 4,
+      "Slots": []
+    },
+    {
+      "Size": 4,
+      "Position": 5,
+      "Slots": []
     }
   ] 
 }

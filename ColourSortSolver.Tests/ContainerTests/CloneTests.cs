@@ -18,7 +18,11 @@ namespace ColourSortSolver.Tests.ContainerTests
             clone.Should().NotBeSameAs(container);
             clone.Size.Should().Be(container.Size);
             clone.Position.Should().Be(container.Position);
-            clone.Slots.Should().Equal(container.Slots);
+            clone.Slots.Should().BeEquivalentTo(container.Slots);
+
+            //Ensure clone does not have a reference to original
+            container.Slots[0] = KnownColor.Blue;
+            clone.Slots[0].Should().Be(KnownColor.Red);
         }
     }
 }

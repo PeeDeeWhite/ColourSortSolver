@@ -21,7 +21,8 @@ namespace ColourSortSolver.Console
         {
             var puzzle = PuzzleLoader.LoadFromJsonFile(filename);
             var solver = new Solver(puzzle);
-            return solver.TryAndSolve();
+            solver.TryAndSolve();
+            return solver.Solution;
         }
     }
 }

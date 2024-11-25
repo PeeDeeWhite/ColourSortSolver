@@ -1,8 +1,10 @@
 ﻿using System.Drawing;
 using FluentAssertions;
+using JetBrains.Annotations;
 
 namespace ColourSortSolver.Tests.ContainerTests;
 
+[TestSubject(typeof(Container))]
 public class MoveableColoursTests
 {
     [Fact]

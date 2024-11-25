@@ -59,7 +59,7 @@ public class HasValidMoveTests
     [Fact]
     public void WhenSolved_ReturnsFalse()
     {
-        var puzzle = TestHelpers.CreateValidPuzzle();
+        var puzzle = TestHelpers.CreateValidSolvedPuzzle();
         puzzle.CheckIsValid();
         puzzle.HasValidMove().Should().BeFalse();
     }

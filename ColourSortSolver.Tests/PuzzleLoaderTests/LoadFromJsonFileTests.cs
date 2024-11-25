@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Drawing;
+using JetBrains.Annotations;
 using FluentAssertions;
 
 namespace ColourSortSolver.Tests.PuzzleLoaderTests
@@ -44,6 +45,13 @@ namespace ColourSortSolver.Tests.PuzzleLoaderTests
             puzzle.Should().NotBeNull();
             puzzle.Containers.Should().NotBeEmpty();
             puzzle.Errors.Should().BeEmpty();
+            for (var index = 0; index < 4; index++)
+            {
+                var container = puzzle.Containers[index];
+                container.Slots.Should().BeEquivalentTo((List<KnownColor>) [KnownColor.Red, KnownColor.Orange, KnownColor.Salmon, KnownColor.Green]);
+            }
+            puzzle.Containers[4].Slots.Should().BeEmpty();
+            puzzle.Containers[5].Slots.Should().BeEmpty();
         }
     }
 }

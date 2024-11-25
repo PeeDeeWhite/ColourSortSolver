@@ -20,9 +20,7 @@ public class ValidationTests
     [Fact]
     public void ContainersEmpty_ReportError()
     {
-        var puzzle = new Puzzle();
-        puzzle.Containers.Add(new(4, 0));
-        puzzle.Containers.Add(new(4, 1));
+        var puzzle = TestHelpers.CreatePuzzleEmptyContainers();
 
         puzzle.CheckIsValid();
 
@@ -87,7 +85,7 @@ public class ValidationTests
     [Fact]
     public void ContainersFilledWithCorrectColoursInCorrectPosition_NoErrorsReportedAndIsSolvedTrue()
     {
-        var puzzle = TestHelpers.CreateValidPuzzle();
+        var puzzle = TestHelpers.CreateValidSolvedPuzzle();
 
         puzzle.CheckIsValid();
         
@@ -98,7 +96,7 @@ public class ValidationTests
     [Fact]
     public void SecondCallToCheckIsValid_ReturnsInitialResult()
     {
-        var puzzle = TestHelpers.CreateValidPuzzle();
+        var puzzle = TestHelpers.CreateValidSolvedPuzzle();
 
         puzzle.IsValid.Should().BeFalse();
         puzzle.IsSolved.Should().BeFalse();

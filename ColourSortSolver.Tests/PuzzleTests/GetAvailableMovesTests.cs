@@ -52,7 +52,7 @@ public class GetAvailableMovesTests
 
         Move[] expectedMoves =
         [
-            new (KnownColor.Aqua, 1, puzzle.Containers[0], puzzle.Containers[1])
+            new (KnownColor.Aqua, 1, 0, 1)
         ];
         var availableMoves = puzzle.GetAvailableMoves();
         availableMoves.Should().BeEquivalentTo(expectedMoves);
@@ -68,8 +68,8 @@ public class GetAvailableMovesTests
 
         Move[] expectedMoves =
         [
-            new (KnownColor.Aqua, 1, puzzle.Containers[0], puzzle.Containers[1]),
-            new (KnownColor.Aqua, 1, puzzle.Containers[1], puzzle.Containers[0])
+            new (KnownColor.Aqua, 1, 0, 1),
+            new (KnownColor.Aqua, 1, 1, 0)
         ];
         var availableMoves = puzzle.GetAvailableMoves();
         availableMoves.Should().BeEquivalentTo(expectedMoves);

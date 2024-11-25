@@ -14,4 +14,12 @@ public class ConstructorTests
 
         action.Should().Throw<ArgumentNullException>();
     }
+
+    [Fact]
+    public void InitializeProperties()
+    {
+        var puzzle = TestHelpers.CreatePuzzleOneMoveToComplete();
+        var solver = new Solver(puzzle);
+        solver.Solution.Should().BeNull();
+    }
 }

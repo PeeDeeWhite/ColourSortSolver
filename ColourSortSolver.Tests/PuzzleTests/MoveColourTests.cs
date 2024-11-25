@@ -25,7 +25,7 @@ public class MoveColourTests
             new(2, 1, [KnownColor.Red])
         ]);
 
-        puzzle.MoveColour(new Move(KnownColor.Red, 1, puzzle.Containers[0], puzzle.Containers[1]));
+        puzzle.MoveColour(new Move(KnownColor.Red, 1, 0, 1));
 
         puzzle.Containers[0].Slots.Should().BeEmpty();
         puzzle.Containers[1].Slots.Should().BeEquivalentTo([KnownColor.Red, KnownColor.Red]);
@@ -39,7 +39,7 @@ public class MoveColourTests
             new(3, 1)
         ]);
 
-        puzzle.MoveColour(new Move(KnownColor.Red, 2, puzzle.Containers[0], puzzle.Containers[1]));
+        puzzle.MoveColour(new Move(KnownColor.Red, 2, 0, 1));
 
         puzzle.Containers[0].Slots.Should().BeEmpty();
         puzzle.Containers[1].Slots.Should().BeEquivalentTo(new List<KnownColor> { KnownColor.Red, KnownColor.Red });

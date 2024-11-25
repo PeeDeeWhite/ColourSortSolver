@@ -1,6 +1,6 @@
 ﻿namespace ColourSortSolver;
 /// <summary>
-/// Solution to the puzzle. Contains the <see cref="Puzzle"/> and <see cref="Move">Moves</see> to solve it, if possible.
+/// A Solution to a puzzle. Contains the <see cref="Puzzle"/> and <see cref="Move">Moves</see> to solve it, if possible.
 /// Provides out of the solution results
 /// </summary>
 /// <param name="puzzle"></param>
@@ -8,7 +8,7 @@ public class Solution(Puzzle puzzle)
 {
     public bool IsSolved => Puzzle.IsSolved;
     public Puzzle Puzzle { get; } = puzzle;
-    public ICollection<Move> Moves {get;} = new List<Move>();
+    public List<Move> Moves {get;} = new List<Move>();
 
     public void OutputResults(IWriter writer)
     {
@@ -33,4 +33,11 @@ public class Solution(Puzzle puzzle)
         }
     }
 
+    public Solution Clone()
+    {
+        var clonedPuzzle = Puzzle.Clone();
+        var solution = new Solution(clonedPuzzle);
+        solution.Moves.AddRange(Moves);
+        return solution;
+    }
 }

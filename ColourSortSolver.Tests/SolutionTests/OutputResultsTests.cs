@@ -97,7 +97,7 @@ public class OutputResultsTests
 
         var solution = new Solution(puzzle);
         solution.Puzzle.CheckIsValid();
-        solution.Moves.Add(new(KnownColor.Blue, 1, puzzle.Containers[0], puzzle.Containers[4]));
+        solution.Moves.Add(new(KnownColor.Blue, 1, 0, 4));
 
         var resultsWriter = new TestResultsWriter();
         solution.OutputResults(resultsWriter);
