@@ -5,7 +5,7 @@ namespace ColourSortSolver.Tests.SolutionTests;
 public class ConstructorTests
 {
     [Fact]
-    public void ConstructorShouldInitializeProperties()
+    public void PropertiesInitialized()
     {
         var puzzle = new Puzzle();
         

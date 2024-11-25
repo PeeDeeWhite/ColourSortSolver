@@ -13,21 +13,21 @@ namespace ColourSortSolver.Tests.PuzzleLoaderTests
         [InlineData("")]
         [InlineData(" ")]
         [InlineData("\t")]
-        public void InvalidPathShouldThrowArgumentNullException(string path)
+        public void InvalidPaths_ThrowArgumentNullException(string path)
         {
             Action act = () => PuzzleLoader.LoadFromJsonFile(path);
             act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
-        public void FileDoesNotExistShouldThrowFileNotFoundException()
+        public void FileNotExist_ThrowFileNotFoundException()
         {
             Action act = () => PuzzleLoader.LoadFromJsonFile(".\\nonexistentfile.json");
             act.Should().Throw<FileNotFoundException>();
         }
 
         [Fact]
-        public void InvalidJsonShouldReturnEmptyPuzzle()
+        public void InvalidJson_ReturnsEmptyPuzzle()
         {
             var puzzle = PuzzleLoader.LoadFromJsonFile(".\\PuzzleLoaderTests\\invalidpuzzle.json");
 
@@ -37,12 +37,8 @@ namespace ColourSortSolver.Tests.PuzzleLoaderTests
         }
 
         [Fact]
-        public void ValidFileShouldReturnPuzzle()
+        public void ValidFile_ReturnsHydratedPuzzle()
         {
-            //var newPuzzle = new Puzzle(new List<Container> {new Container(4, 0, new List<KnownColor> {KnownColor.Aqua, KnownColor.Beige})});
-
-            //File.WriteAllText(".\\PuzzleLoaderTests\\puzzle.json", JsonSerializer.Serialize(newPuzzle, new JsonSerializerOptions() { Converters = { new KnownColorConverter() } }));
-            
             var puzzle = PuzzleLoader.LoadFromJsonFile(".\\PuzzleLoaderTests\\validpuzzle.json");
 
             puzzle.Should().NotBeNull();

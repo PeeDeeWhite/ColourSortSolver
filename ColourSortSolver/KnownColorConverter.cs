@@ -17,6 +17,12 @@ public class KnownColorConverter : JsonConverter<KnownColor>
 
     public override void Write(Utf8JsonWriter writer, KnownColor value, JsonSerializerOptions options)
     {
-        writer.WriteStringValue(value.ToString());
+        if (Enum.IsDefined(typeof(KnownColor), value))
+        {
+            writer.WriteStringValue(value.ToString());
+            return;
+        }
+
+        throw new ArgumentException(nameof(value));
     }
 }

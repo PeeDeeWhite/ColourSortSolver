@@ -7,7 +7,7 @@ namespace ColourSortSolver.Tests.SolutionTests;
 public class IsSolvedTests
 {
     [Fact]
-    public void IsSolved_ShouldReturnPuzzleIsSolved()
+    public void IsSolved_ReturnPuzzleIsSolved()
     {
         var puzzle = new Puzzle();
         var solution = new Solution(puzzle);

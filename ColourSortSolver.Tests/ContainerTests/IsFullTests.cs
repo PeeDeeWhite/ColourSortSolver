@@ -8,17 +8,17 @@ namespace ColourSortSolver.Tests.ContainerTests
     public class IsFullTests
     {
         [Fact]
-        public void IsFull_ShouldReturnTrue_WhenSlotsCountEqualsSize()
+        public void SlotsCountEqualsSize_ReturnTrue()
         {
-            var initialColors = new List<KnownColor> { KnownColor.Red, KnownColor.Blue, KnownColor.Green };
+            List<KnownColor> initialColors = [KnownColor.Red, KnownColor.Blue, KnownColor.Green];
             var container = new Container(3, 0, initialColors);
             container.IsFull.Should().BeTrue();
         }
 
         [Fact]
-        public void IsFull_ShouldReturnFalse_WhenSlotsCountLessThanSize()
+        public void SlotsCountLessThanSize_ReturnFalse()
         {
-            var initialColors = new List<KnownColor> { KnownColor.Red, KnownColor.Blue };
+            List<KnownColor> initialColors = [KnownColor.Red, KnownColor.Blue];
             var container = new Container(3, 0, initialColors);
             container.IsFull.Should().BeFalse();
         }

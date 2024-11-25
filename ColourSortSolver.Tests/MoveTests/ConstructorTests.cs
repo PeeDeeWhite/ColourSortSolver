@@ -13,32 +13,30 @@ public class ConstructorTests
     [InlineData(KnownColor.Green, 4, 5, 15)]
     [InlineData(KnownColor.Yellow, 6, 7, 20)]
     [InlineData(KnownColor.Black, 8, 9, 25)]
-    public void ConstructorShouldInitializePropertiesCorrectly(KnownColor colour, int sourceIndex, int destinationIndex, int noOfColours)
+    public void PropertiesCorrectlyInitialized(KnownColor colour, int sourcePosition, int destinationPosition, int noOfColours)
     {
-        var source = new Container(10, 1);
-        var destination = new Container(10, 2);
+        var source = new Container(10, sourcePosition);
+        var destination = new Container(10, destinationPosition);
 
-        var move = new Move(colour, source, sourceIndex, destination, destinationIndex, noOfColours);
+        var move = new Move(colour, noOfColours, source, destination);
 
         move.Colour.Should().Be(colour);
+        move.NoOfColours.Should().Be(noOfColours);
         move.Source.Should().NotBeSameAs(source);
         move.Source.Size.Should().Be(source.Size);
-        move.Source.Position.Should().Be(source.Position);
-        move.SourceIndex.Should().Be(sourceIndex);
+        move.Source.Position.Should().Be(sourcePosition);
         move.Destination.Should().NotBeSameAs(destination);
         move.Destination.Size.Should().Be(destination.Size);
-        move.Destination.Position.Should().Be(destination.Position);
-        move.DestinationIndex.Should().Be(destinationIndex);
-        move.NoOfColours.Should().Be(noOfColours);
+        move.Destination.Position.Should().Be(destinationPosition);
     }
 
     [Fact]
-    public void ConstructorShouldCloneContainers()
+    public void ClonesContainers()
     {
-        var source = new Container(10, 1, new List<KnownColor> { KnownColor.Red });
-        var destination = new Container(10, 2, new List<KnownColor> { KnownColor.Blue });
+        var source = new Container(10, 1, [KnownColor.Red]);
+        var destination = new Container(10, 2, [KnownColor.Blue]);
 
-        var move = new Move(KnownColor.Red, source, 0, destination, 1, 5);
+        var move = new Move(KnownColor.Red, 5, source, destination);
 
         move.Source.Should().NotBeSameAs(source);
         move.Destination.Should().NotBeSameAs(destination);

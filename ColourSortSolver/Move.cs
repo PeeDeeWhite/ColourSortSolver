@@ -8,21 +8,22 @@ namespace ColourSortSolver;
 /// </summary>
 public class Move
 {
-    public Move(KnownColor colour, Container source, int sourceIndex, Container destination, int destinationIndex, int noOfColours)
+    public Move(KnownColor colour, int noOfColours, Container source, Container destination)
     {
         Colour = colour;
         Source = source.Clone();
-        SourceIndex = sourceIndex;
         Destination = destination.Clone();
-        DestinationIndex = destinationIndex;
         NoOfColours = noOfColours;
     }
 
-    public Container Source { get; }
-    public int SourceIndex { get; }
-    public Container Destination { get; }
-    public int DestinationIndex { get; }
     public KnownColor Colour { get; }
+    public Container Source { get; }
+    public Container Destination { get; }
 
     public int NoOfColours { get; }
+    
+    public override string ToString()
+    {
+        return $"Move {NoOfColours} {Colour}(s) from container {Source.Position} to container {Destination.Position}.";
+    }
 }

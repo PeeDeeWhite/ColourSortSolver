@@ -4,11 +4,11 @@ using JetBrains.Annotations;
 
 namespace ColourSortSolver.Tests.PuzzleTests;
 
-[TestSubject(typeof(Solver))]
+[TestSubject(typeof(Puzzle))]
 public class ValidationTests
 {
     [Fact]
-    public void NoContainersThenInvalid()
+    public void NoContainers_ReportError()
     {
         var puzzle = new Puzzle();
 
@@ -18,11 +18,11 @@ public class ValidationTests
     }
 
     [Fact]
-    public void ContainersEmptyThenInvalid()
+    public void ContainersEmpty_ReportError()
     {
         var puzzle = new Puzzle();
-        puzzle.Containers.Add(new Container(4, 0));
-        puzzle.Containers.Add(new Container(4, 1));
+        puzzle.Containers.Add(new(4, 0));
+        puzzle.Containers.Add(new(4, 1));
 
         puzzle.CheckIsValid();
 
@@ -30,11 +30,11 @@ public class ValidationTests
     }
 
     [Fact]
-    public void ContainersOfVaryingSizeThenInvalid()
+    public void ContainersOfVaryingSize_ReportError()
     {
         var puzzle = new Puzzle();
-        puzzle.Containers.Add(new Container(4, 0, new List<KnownColor> { KnownColor.Green, KnownColor.Blue, KnownColor.Crimson }));
-        puzzle.Containers.Add(new Container(3, 1, new List<KnownColor> { KnownColor.Green, KnownColor.Blue }));
+        puzzle.Containers.Add(new(4, 0,  [KnownColor.Green, KnownColor.Blue, KnownColor.Crimson]));
+        puzzle.Containers.Add(new(3, 1,  [KnownColor.Green, KnownColor.Blue]));
 
         puzzle.CheckIsValid();
 
@@ -42,13 +42,13 @@ public class ValidationTests
     }
 
     [Fact]
-    public void ColoursLessThanContainerSizeThenInvalid()
+    public void ColoursLessThanContainerSize_ReportError()
     {
         var puzzle = new Puzzle();
-        puzzle.Containers.Add(new Container(4, 0, new List<KnownColor> { KnownColor.Green, KnownColor.Crimson, KnownColor.Yellow }));
-        puzzle.Containers.Add(new Container(4, 1, new List<KnownColor> { KnownColor.Green, KnownColor.Blue, KnownColor.Crimson, KnownColor.Yellow }));
-        puzzle.Containers.Add(new Container(4, 2, new List<KnownColor> { KnownColor.Green, KnownColor.Blue, KnownColor.Crimson, KnownColor.Yellow }));
-        puzzle.Containers.Add(new Container(4, 3));
+        puzzle.Containers.Add(new(4, 0, [KnownColor.Green, KnownColor.Crimson, KnownColor.Yellow]));
+        puzzle.Containers.Add(new(4, 1, [KnownColor.Green, KnownColor.Blue, KnownColor.Crimson, KnownColor.Yellow]));
+        puzzle.Containers.Add(new(4, 2, [KnownColor.Green, KnownColor.Blue, KnownColor.Crimson, KnownColor.Yellow]));
+        puzzle.Containers.Add(new(4, 3));
 
         puzzle.CheckIsValid();
 
@@ -56,13 +56,13 @@ public class ValidationTests
     }
 
     [Fact]
-    public void ColoursGreaterThanContainerSizeThenInvalid()
+    public void ColoursGreaterThanContainerSize_ReportError()
     {
         var puzzle = new Puzzle();
-        puzzle.Containers.Add(new Container(4, 0, new List<KnownColor> { KnownColor.Green, KnownColor.Blue, KnownColor.Crimson, KnownColor.Yellow }));
-        puzzle.Containers.Add(new Container(4, 1, new List<KnownColor> { KnownColor.Green, KnownColor.Blue, KnownColor.Crimson, KnownColor.Yellow, KnownColor.Aqua }));
-        puzzle.Containers.Add(new Container(4, 2, new List<KnownColor> { KnownColor.Green, KnownColor.Blue, KnownColor.Crimson, KnownColor.Yellow }));
-        puzzle.Containers.Add(new Container(4, 3));
+        puzzle.Containers.Add(new(4, 0, [KnownColor.Green, KnownColor.Blue, KnownColor.Crimson, KnownColor.Yellow]));
+        puzzle.Containers.Add(new(4, 1, [KnownColor.Green, KnownColor.Blue, KnownColor.Crimson, KnownColor.Yellow, KnownColor.Aqua]));
+        puzzle.Containers.Add(new(4, 2, [KnownColor.Green, KnownColor.Blue, KnownColor.Crimson, KnownColor.Yellow]));
+        puzzle.Containers.Add(new(4, 3));
 
         puzzle.CheckIsValid();
 
@@ -70,13 +70,13 @@ public class ValidationTests
     }
 
     [Fact]
-    public void ContainersFilledWithCorrectColoursThenValid()
+    public void ContainersFilledWithCorrectColours_NoErrorsReported()
     {
         var puzzle = new Puzzle();
-        puzzle.Containers.Add(new Container(3, 0, new List<KnownColor> { KnownColor.Green, KnownColor.Green }));
-        puzzle.Containers.Add(new Container(3, 1, new List<KnownColor> { KnownColor.Yellow, KnownColor.Yellow, KnownColor.Yellow }));
-        puzzle.Containers.Add(new Container(3, 2, new List<KnownColor> { KnownColor.Crimson, KnownColor.Crimson, KnownColor.Crimson }));
-        puzzle.Containers.Add(new Container(3, 3, new List<KnownColor> { KnownColor.Green}));
+        puzzle.Containers.Add(new(3, 0, [KnownColor.Green, KnownColor.Green]));
+        puzzle.Containers.Add(new(3, 1, [KnownColor.Yellow, KnownColor.Yellow, KnownColor.Yellow]));
+        puzzle.Containers.Add(new(3, 2, [KnownColor.Crimson, KnownColor.Crimson, KnownColor.Crimson]));
+        puzzle.Containers.Add(new(3, 3, [KnownColor.Green]));
 
         puzzle.CheckIsValid();
 
@@ -85,15 +85,9 @@ public class ValidationTests
     }
 
     [Fact]
-    public void ContainersFilledWithCorrectColoursInCorrectPositionThenValidAndSolved()
+    public void ContainersFilledWithCorrectColoursInCorrectPosition_NoErrorsReportedAndIsSolvedTrue()
     {
-        var puzzle = new Puzzle();
-        puzzle.Containers.Add(new Container(3, 0, new List<KnownColor> { KnownColor.Green, KnownColor.Green, KnownColor.Green }));
-        puzzle.Containers.Add(new Container(3, 1, new List<KnownColor> { KnownColor.Yellow, KnownColor.Yellow, KnownColor.Yellow }));
-        puzzle.Containers.Add(new Container(3, 2, new List<KnownColor> { KnownColor.Crimson, KnownColor.Crimson, KnownColor.Crimson }));
-        puzzle.Containers.Add(new Container(3, 3, new List<KnownColor> { KnownColor.Blue, KnownColor.Blue, KnownColor.Blue }));
-        puzzle.Containers.Add(new Container(3, 4));
-        puzzle.Containers.Add(new Container(3, 5));
+        var puzzle = TestHelpers.CreateValidPuzzle();
 
         puzzle.CheckIsValid();
         
@@ -101,9 +95,33 @@ public class ValidationTests
         puzzle.IsSolved.Should().BeTrue();
     }
 
+    [Fact]
+    public void SecondCallToCheckIsValid_ReturnsInitialResult()
+    {
+        var puzzle = TestHelpers.CreateValidPuzzle();
+
+        puzzle.IsValid.Should().BeFalse();
+        puzzle.IsSolved.Should().BeFalse();
+        puzzle.Errors.Should().BeEmpty();
+
+        puzzle.CheckIsValid();
+
+        puzzle.IsValid.Should().BeTrue();
+        puzzle.IsSolved.Should().BeTrue();
+        puzzle.Errors.Should().BeEmpty();
+
+        puzzle.CheckIsValid();
+
+        puzzle.IsValid.Should().BeTrue();
+        puzzle.IsSolved.Should().BeTrue();
+        puzzle.Errors.Should().BeEmpty();
+    }
+
     private void CheckForError(Puzzle puzzle, string message)
     {
         puzzle.IsValid.Should().BeFalse();
         puzzle.Errors.Should().ContainSingle(e => e is PuzzleException && e.Message.Contains(message));
+        puzzle.Errors.Select(x => ((PuzzleException) x).Puzzle).Should().AllBeEquivalentTo(puzzle);
+        ((PuzzleException)puzzle.Errors.First()).Puzzle.Should().Be(puzzle);
     }
 }

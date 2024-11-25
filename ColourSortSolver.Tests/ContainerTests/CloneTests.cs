@@ -8,7 +8,7 @@ namespace ColourSortSolver.Tests.ContainerTests
     public class CloneTests
     {
         [Fact]
-        public void ColourContainer_Clone_ShouldReturnClone()
+        public void IsCopyOfOriginal()
         {
             var container = new Container(1, 0);
             container.AddColour(KnownColor.Red);

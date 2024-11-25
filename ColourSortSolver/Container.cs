@@ -27,11 +27,18 @@ public class Container(int size, int position)
 
     public bool IsEmpty => Slots.Count == 0;
 
-    public bool IsSolved => IsEmpty || (IsFull && Slots.Distinct().Count() <= 1);
-    
+    public bool IsSolved => IsFull && Slots.Distinct().Count() <= 1;
+
+    public KnownColor? TopColour => IsEmpty ? null : Slots.Last();
+
+    /// <summary>
+    /// Gets all slots of the same colour from the top of the container if any.
+    /// </summary>
+    public List<KnownColor> MoveableColours => IsEmpty ? new List<KnownColor>() : Slots.GroupBy(x => x).Last().ToList();
+
     public bool CanAddColour(KnownColor colour)
     {
-        return IsEmpty || (!IsFull && Slots.Last() == colour);
+        return IsEmpty || (!IsFull && TopColour == colour);
     }
     
     public void AddColour(KnownColor colour)
@@ -42,6 +49,6 @@ public class Container(int size, int position)
 
     public Container Clone()
     {
-        return new Container(Size, Position, new List<KnownColor>(Slots));
+        return new(Size, Position, new List<KnownColor>(Slots));
     }
 }

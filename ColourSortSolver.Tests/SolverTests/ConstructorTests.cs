@@ -7,7 +7,7 @@ namespace ColourSortSolver.Tests.SolverTests;
 public class ConstructorTests
 {
     [Fact]
-    public void NullPuzzleThrowsException()
+    public void NullPuzzle_ThrowsException()
     {
         // ReSharper disable once ObjectCreationAsStatement
         var action = new Action(() => new Solver(null!));

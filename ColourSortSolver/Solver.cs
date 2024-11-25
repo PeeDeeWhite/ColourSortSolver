@@ -19,30 +19,26 @@
         {
             if (Puzzle.CheckIsValid())
             {
-                while (Puzzle.CanMakeValidMove())
-                {
-                    MoveColour();
-                }
+                MoveRecursively();
             }
             return Solution;
         }
 
-        private void MoveColour()
+        private void MoveRecursively()
         {
-            var sourceContainer = Puzzle.Containers.FirstOrDefault(c => c.Slots.Distinct().Count() > 1);
-            if (sourceContainer == null) throw new InvalidOperationException("No valid source container found for moving colour.");
-
-            var colourToMove = sourceContainer.Slots.GroupBy(c => c).OrderByDescending(g => g.Count()).First().Key;
-            var destinationContainer = Puzzle.Containers.FirstOrDefault(c => c.Slots.Count < c.Size && (c.Slots.Count == 0 || c.Slots.All(s => s == colourToMove)));
-            if (destinationContainer == null) throw new InvalidOperationException("No valid destination container found for moving colour.");
-
-            var sourceIndex = sourceContainer.Slots.ToList().FindIndex(c => c == colourToMove);
-            var destinationIndex = destinationContainer.Slots.Count;
-
-            sourceContainer.Slots.Remove(colourToMove);
-            destinationContainer.Slots.Add(colourToMove);
-
-            Solution.Moves.Add(new Move(colourToMove, sourceContainer.Clone(), sourceIndex, destinationContainer, destinationIndex, 1));
+            var availableMoves = Puzzle.GetAvailableMoves();
+            foreach (var move in availableMoves)
+            {
+                if (Puzzle.IsSolved) return;
+                MoveColour(move);
+                MoveRecursively();
+            }
+        }
+        
+        private void MoveColour(Move move)
+        {
+            Puzzle.MoveColour(move);
+            Solution.Moves.Add(move);
         }
     }
 }

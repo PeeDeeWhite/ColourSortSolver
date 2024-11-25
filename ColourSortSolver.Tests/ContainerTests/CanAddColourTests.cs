@@ -8,28 +8,28 @@ namespace ColourSortSolver.Tests.ContainerTests
     public class CanAddColourTests
     {
         [Theory]
-        [InlineData(KnownColor.Red, true)]
-        [InlineData(KnownColor.Blue, true)]
-        public void CanAddColourShouldReturnExpectedResultWhenContainerIsEmpty(KnownColor colour, bool expected)
+        [InlineData(KnownColor.Red)]
+        [InlineData(KnownColor.Blue)]
+        public void ContainerIsEmpty_CanAddAnyColour(KnownColor colour)
         {
             var container = new Container(3, 0);
-            container.CanAddColour(colour).Should().Be(expected);
+            container.CanAddColour(colour).Should().BeTrue();
         }
 
         [Theory]
         [InlineData(KnownColor.Red, true)]
         [InlineData(KnownColor.Blue, false)]
-        public void CanAddColourShouldReturnExpectedResultWhenContainerIsNotFullAndLastColourMatches(KnownColor colour, bool expected)
+        public void ContainerIsNotFull_AddOnlyMatchingColour(KnownColor colour, bool expected)
         {
-            var initialColors = new List<KnownColor> { KnownColor.Red };
+            List<KnownColor> initialColors = [KnownColor.Red];
             var container = new Container(3, 0, initialColors);
             container.CanAddColour(colour).Should().Be(expected);
         }
 
         [Fact]
-        public void CanAddColourShouldReturnFalse_WhenContainerIsFull()
+        public void ContainerIsFull_CannotAddColour()
         {
-            var initialColors = new List<KnownColor> { KnownColor.Red, KnownColor.Red, KnownColor.Red };
+            List<KnownColor> initialColors = [KnownColor.Red, KnownColor.Red, KnownColor.Red];
             var container = new Container(3, 0, initialColors);
             container.CanAddColour(KnownColor.Red).Should().BeFalse();
         }

@@ -14,7 +14,7 @@ public class Solution(Puzzle puzzle)
     {
         if (!Puzzle.IsValid)
         {
-            writer.WriteLine("Puzzle is invalid due to the following errors:");
+            writer.WriteLine(Properties.Resources.PuzzleInvalidWithErrors);
             foreach (var error in Puzzle.Errors)
             {
                 writer.WriteLine($"- {error.Message}");
@@ -23,13 +23,13 @@ public class Solution(Puzzle puzzle)
             return;
         }
 
-        writer.WriteLine("Puzzle is valid.");
-        writer.WriteLine($"Puzzle solved: {IsSolved} in {Moves.Count}");
-        writer.WriteLine("Moves:");
+        writer.WriteLine(Properties.Resources.PuzzleValid);
+        writer.WriteLine(Properties.Resources.PuzzleSolvedMoves, IsSolved, Moves.Count);
+        writer.WriteLine(Properties.Resources.Moves);
 
         foreach (var move in Moves)
         {
-            writer.WriteLine($"Move {move.NoOfColours} {move.Colour}(s) from container {move.SourceIndex} to container {move.DestinationIndex}.");
+            writer.WriteLine(move.ToString());
         }
     }
 

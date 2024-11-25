@@ -8,9 +8,9 @@ namespace ColourSortSolver.Tests.SolutionTests;
 public class OutputResultsTests
 {
     [Fact]
-    public void EmptyPuzzleShouldOutputError()
+    public void EmptyPuzzle_OutputError()
     {
-        var solution = new Solution(new Puzzle());
+        var solution = new Solution(new());
         solution.Puzzle.CheckIsValid();
 
         var resultsWriter = new TestResultsWriter();
@@ -20,13 +20,13 @@ public class OutputResultsTests
     }
 
     [Fact]
-    public void PuzzleVaryingContainerSizeShouldOutputError()
+    public void PuzzleVaryingContainerSize_OutputError()
     {
-        var solution = new Solution(new Puzzle(new List<Container>
-        {
-            new Container(2, 0),
-            new Container(3, 1)
-        }));
+        var solution = new Solution(new(
+        [
+            new(2, 0),
+            new(3, 1)
+        ]));
         solution.Puzzle.CheckIsValid();
 
         var resultsWriter = new TestResultsWriter();
@@ -36,13 +36,13 @@ public class OutputResultsTests
     }
 
     [Fact]
-    public void PuzzleContainerLessMinSizeShouldOutputError()
+    public void PuzzleContainerLessMinSize_OutputError()
     {
-        var solution = new Solution(new Puzzle(new List<Container>
-        {
-            new Container(0, 0),
-            new Container(2, 1)
-        }));
+        var solution = new Solution(new(
+        [
+            new(0, 0),
+            new(2, 1)
+        ]));
         solution.Puzzle.CheckIsValid();
 
         var resultsWriter = new TestResultsWriter();
@@ -52,13 +52,13 @@ public class OutputResultsTests
     }
 
     [Fact]
-    public void PuzzleContainerAreEmptyShouldOutputError()
+    public void PuzzleContainerAreEmpty_OutputError()
     {
-        var solution = new Solution(new Puzzle(new List<Container>
-        {
-            new Container(2, 0),
-            new Container(2, 1)
-        }));
+        var solution = new Solution(new(
+        [
+            new (2, 0),
+            new (2, 1)
+        ]));
         solution.Puzzle.CheckIsValid();
 
         var resultsWriter = new TestResultsWriter();
@@ -68,13 +68,13 @@ public class OutputResultsTests
     }
 
     [Fact]
-    public void PuzzleWrongNoOfColoursShouldOutputError()
+    public void PuzzleWrongNoOfColours_OutputError()
     {
         var puzzle = new Puzzle();
-        puzzle.Containers.Add(new Container(4, 0, new List<KnownColor> { KnownColor.Green, KnownColor.Crimson, KnownColor.Yellow }));
-        puzzle.Containers.Add(new Container(4, 1, new List<KnownColor> { KnownColor.Green, KnownColor.Blue, KnownColor.Crimson, KnownColor.Yellow }));
-        puzzle.Containers.Add(new Container(4, 2, new List<KnownColor> { KnownColor.Green, KnownColor.Blue, KnownColor.Crimson, KnownColor.Yellow }));
-        puzzle.Containers.Add(new Container(4, 3));
+        puzzle.Containers.Add(new(4, 0, [KnownColor.Green, KnownColor.Crimson, KnownColor.Yellow]));
+        puzzle.Containers.Add(new(4, 1, [KnownColor.Green, KnownColor.Blue, KnownColor.Crimson, KnownColor.Yellow]));
+        puzzle.Containers.Add(new(4, 2, [KnownColor.Green, KnownColor.Blue, KnownColor.Crimson, KnownColor.Yellow]));
+        puzzle.Containers.Add(new(4, 3));
 
         var solution = new Solution(puzzle);
         solution.Puzzle.CheckIsValid();
@@ -84,17 +84,44 @@ public class OutputResultsTests
 
         resultsWriter.Contains(string.Format(Properties.Resources.WrongNumberOfColours, 4)).Should().BeTrue();
     }
+
+    [Fact]
+    public void ValidPuzzle_OutputResults()
+    {
+        var puzzle = new Puzzle();
+        puzzle.Containers.Add(new(4, 0, [KnownColor.Yellow, KnownColor.Green, KnownColor.Crimson, KnownColor.Blue]));
+        puzzle.Containers.Add(new(4, 1, [KnownColor.Green, KnownColor.Blue, KnownColor.Crimson, KnownColor.Yellow]));
+        puzzle.Containers.Add(new(4, 2, [KnownColor.Blue, KnownColor.Green, KnownColor.Yellow, KnownColor.Crimson]));
+        puzzle.Containers.Add(new(4, 3, [KnownColor.Crimson, KnownColor.Green, KnownColor.Blue, KnownColor.Yellow]));
+        puzzle.Containers.Add(new(4, 4));
+
+        var solution = new Solution(puzzle);
+        solution.Puzzle.CheckIsValid();
+        solution.Moves.Add(new(KnownColor.Blue, 1, puzzle.Containers[0], puzzle.Containers[4]));
+
+        var resultsWriter = new TestResultsWriter();
+        solution.OutputResults(resultsWriter);
+
+        resultsWriter.Contains(Properties.Resources.PuzzleValid).Should().BeTrue();
+        resultsWriter.Contains(string.Format(Properties.Resources.PuzzleSolvedMoves, false, 1)).Should().BeTrue();
+        resultsWriter.Contains(solution.Moves.First().ToString()).Should().BeTrue();
+    }
 }
 
 public class TestResultsWriter : IWriter
 {
-    public List<string> Lines { get; } = new List<string>();
+    public List<string> Lines { get; } = [];
     
     public void WriteLine(string value)
     {
         Lines.Add(value);
     }
-    
+
+    public void WriteLine(string value, params object[] args)
+    {
+        Lines.Add(string.Format(value, args));
+    }
+
     public bool Contains(string message)
     {
         return Lines.Any(line => line.Contains(message));

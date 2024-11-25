@@ -79,6 +79,15 @@ namespace ColourSortSolver.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Moves:.
+        /// </summary>
+        internal static string Moves {
+            get {
+                return ResourceManager.GetString("Moves", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Puzzle container must all have a minimum size of 1.
         /// </summary>
         internal static string PuzzleContainerMinimumSize {
@@ -106,11 +115,38 @@ namespace ColourSortSolver.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Puzzle is invalid due to the following errors:.
+        /// </summary>
+        internal static string PuzzleInvalidWithErrors {
+            get {
+                return ResourceManager.GetString("PuzzleInvalidWithErrors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Puzzle Is Empty.
         /// </summary>
         internal static string PuzzleIsEmpty {
             get {
                 return ResourceManager.GetString("PuzzleIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Puzzle solved: {0} in {1}.
+        /// </summary>
+        internal static string PuzzleSolvedMoves {
+            get {
+                return ResourceManager.GetString("PuzzleSolvedMoves", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Puzzle is valid..
+        /// </summary>
+        internal static string PuzzleValid {
+            get {
+                return ResourceManager.GetString("PuzzleValid", resourceCulture);
             }
         }
         

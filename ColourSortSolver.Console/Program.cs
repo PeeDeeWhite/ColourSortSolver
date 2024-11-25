@@ -1,7 +1,10 @@
-﻿namespace ColourSortSolver.Console
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace ColourSortSolver.Console
 {
     using System;
 
+    [ExcludeFromCodeCoverage]
     internal class Program
     {
 

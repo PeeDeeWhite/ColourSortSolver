@@ -133,12 +133,24 @@
     <value>Each colour must be present {0} times</value>
   </data>
   <data name="FileDoesNotExist" xml:space="preserve">
-      <value>The file does not exist.</value>
+    <value>The file does not exist.</value>
   </data>
   <data name="InvalidFilename" xml:space="preserve">
-      <value>Please provide a valid file name as an argument.</value>
+    <value>Please provide a valid file name as an argument.</value>
   </data>
   <data name="Unknowncolour" xml:space="preserve">
-      <value>Unknown colour</value>
+    <value>Unknown colour</value>
+  </data>
+  <data name="PuzzleInvalidWithErrors" xml:space="preserve">
+    <value>Puzzle is invalid due to the following errors:</value>
+  </data>
+  <data name="PuzzleValid" xml:space="preserve">
+    <value>Puzzle is valid.</value>
+  </data>
+  <data name="PuzzleSolvedMoves" xml:space="preserve">
+    <value>Puzzle solved: {0} in {1}</value>
+  </data>
+  <data name="Moves" xml:space="preserve">
+    <value>Moves:</value>
   </data>
 </root>
