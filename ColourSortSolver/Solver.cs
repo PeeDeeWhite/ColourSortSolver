@@ -81,11 +81,11 @@
         {
             if (!_moveHistory.Any()) return new List<Move>();
             
-            var (lastMove, moves) = _moveHistory.Pop();
+            var (_, moves) = _moveHistory.Pop();
             _currentSolution.RevertLastMove();
             while (moves.Count == 0 && _moveHistory.Count > 0)
             {
-                (lastMove, moves) = _moveHistory.Pop();
+                (_, moves) = _moveHistory.Pop();
                 _currentSolution.RevertLastMove();
             }
             return moves;
