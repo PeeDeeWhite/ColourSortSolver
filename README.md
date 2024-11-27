@@ -11,7 +11,7 @@ Rules
 - A colour(s) can be moved a container where the top most colour is the same and there is enough space for the colour(s)
 - When the source container has multiple instance of the same colour then all are moved. If enough space in target container.
 
-I have written a simple console application in C# which can solve these colour puzzle.  The application will output the minimum number of steps required to solve the game, it possible.
+This is a simple console application in C# which can solve these colour puzzle.  The application will output the minimum number of steps required to solve the game, if possible.
 
 ## Design
 I didn't want to just use some solution on the internet so I decided to write my own.  I knew a brute force approach would not work for anything but the smallest puzzle.  I knew I would have to use a back track approach.
