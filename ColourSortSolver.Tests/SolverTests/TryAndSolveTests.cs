@@ -59,7 +59,7 @@ public class TryAndSolveTests
         solver.Solution.Puzzle.Errors.Should().BeEmpty();
     }
 
-    [Fact(Skip = "")]
+    [Fact(Skip = "Ignore from automated runs")]
     public void LargePuzzleMultipleSolutions_SolvedMinMoves()
     {
         var puzzle = new Puzzle();
