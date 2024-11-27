@@ -36,14 +36,14 @@ public class Container(int size, int position)
     /// </summary>
     public List<KnownColor> MoveableColours => IsEmpty ? new List<KnownColor>() : Slots.GroupBy(x => x).Last().ToList();
 
-    public bool CanAddColour(KnownColor colour)
+    public bool CanAddColour(IList<KnownColor> colours)
     {
-        return IsEmpty || (!IsFull && TopColour == colour);
+        return IsEmpty || (!IsFull && TopColour == colours.First() && colours.Count + Slots.Count <= Size);
     }
     
     public void AddColour(KnownColor colour)
     {
-        if (!CanAddColour(colour)) return;
+        if (!CanAddColour([colour])) return;
         Slots.Add(colour);
     }
 

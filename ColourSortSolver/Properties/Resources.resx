@@ -153,4 +153,7 @@
   <data name="Moves" xml:space="preserve">
     <value>Moves:</value>
   </data>
+  <data name="PuzzleContainersPositionNotSequential" xml:space="preserve">
+    <value>Puzzle Containers must have sequential positions</value>
+  </data>
 </root>

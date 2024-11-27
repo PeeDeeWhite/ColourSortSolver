@@ -8,92 +8,94 @@
     {
         private readonly Puzzle _origPuzzle;
         private Solution _currentSolution = null!;
-        private Puzzle _workingPuzzle = null!;
-        private readonly List<MoveHistoryItem> _moveHistory;
-        private int _minNoOfMoves = Int32.MaxValue;
+        private readonly Stack<(Move Move, List<Move> Moves)> _moveHistory;
+        private int _minNoOfMoves = int.MaxValue;
 
         public Solver(Puzzle puzzle)
         {
             if (puzzle == null) throw new ArgumentNullException(nameof(puzzle));
             
             _origPuzzle = puzzle.Clone(); // store copy of original puzzle to initialise each solution
-            _moveHistory = new List<MoveHistoryItem>();
+            _moveHistory = new();
         }
 
         public Solution Solution { get; private set; } = null!;
 
         public void TryAndSolve()
         {
-            _workingPuzzle = _origPuzzle.Clone();
-            _currentSolution = new Solution(_workingPuzzle);
-            if (!_workingPuzzle.CheckIsValid() || _workingPuzzle.IsSolved)
+            _currentSolution = new(_origPuzzle);
+            if (!_currentSolution.Puzzle.CheckIsValid() || _currentSolution.Puzzle.IsSolved)
             {
                 Solution = _currentSolution;
                 return;
             }
 
-            ApplyMovesRecursively();
+            ApplyAvailableMoves();
         }
 
-        private void ApplyMovesRecursively()
+        private void ApplyAvailableMoves()
         {
-            var availableMoves = _workingPuzzle.GetAvailableMoves();
-            foreach (var move in availableMoves)
+            var availableMoves = _currentSolution.Puzzle.GetAvailableMoves();
+            while (availableMoves.Any() && !_currentSolution.IsSolved)
             {
-                if (_moveHistory.Count >= _minNoOfMoves)
+                if (_moveHistory.Count >= _minNoOfMoves - 1)
                 {
-                    BackTrackTwoMoves();
-                    return;
+                    BackTrack();
+                    availableMoves = BackTrack();
+                    continue; // No point continuing if we have already found a quicker solution
                 }
                 
-                MoveColour(move, availableMoves);
-                
-                if (_workingPuzzle.IsSolved)
+                var move = availableMoves.First();
+                if (_moveHistory.Any(x => x.Move == move))
                 {
-                    if (Solution == null || _currentSolution.Moves.Count < Solution.Moves.Count)
+                    availableMoves = BackTrack(); // If cycling round and repeating a move then back track.
+                    continue;
+                }
+
+                _moveHistory.Push((move, availableMoves[1..]));
+
+                MoveColour(move);
+
+                if (_currentSolution.IsSolved)
+                {
+                    if (_currentSolution.Moves.Count < _minNoOfMoves)
                     {
-                        Solution = _currentSolution;
-                        _minNoOfMoves = Solution.Moves.Count;
+                        Solution = _currentSolution.Clone();
+                        _minNoOfMoves = _currentSolution.Moves.Count;
                     }
 
-                    // Not possible to find a quicker solution so quit
-                    if (_moveHistory.Count < 2) return;
-                    BackTrackTwoMoves();
-                    _currentSolution = new Solution(_workingPuzzle);
-                    _workingPuzzle = _workingPuzzle.Clone();
-                    return;
+                    BackTrack();
+                    availableMoves = BackTrack();
+                    continue;
                 }
-                ApplyMovesRecursively();
+                
+                availableMoves = _currentSolution.Puzzle.GetAvailableMoves(move);
+                if (availableMoves.Count == 0)
+                {
+                    availableMoves = BackTrack(); // If cycling round and repeating a move then back track.
+                }
             }
         }
 
-        private void BackTrackTwoMoves()
+        private List<Move> BackTrack()
         {
-            for (var i = 0; i < 2; i++)
+            if (!_moveHistory.Any()) return new List<Move>();
+            
+            var (lastMove, moves) = _moveHistory.Pop();
+            _currentSolution.RevertLastMove();
+            while (moves.Count == 0 && _moveHistory.Count > 0)
             {
-                var lastMove = _moveHistory[^1];
-                _moveHistory.RemoveAt(_moveHistory.Count - 1);
-                _workingPuzzle.MoveColour(new(lastMove.Move.Colour, lastMove.Move.NoOfColours, lastMove.Move.DestinationIndex, lastMove.Move.SourceIndex));
-                Solution.Moves.RemoveAt(Solution.Moves.Count - 1);
+                (lastMove, moves) = _moveHistory.Pop();
+                _currentSolution.RevertLastMove();
             }
+            return moves;
         }
 
-        private void MoveColour(Move move, IList<Move> availableMoves)
+
+        private void MoveColour(Move move)
         {
-            _workingPuzzle.MoveColour(move);
+            _currentSolution.Puzzle.MoveColour(move);
             _currentSolution.Moves.Add(move);
-            _moveHistory.Add(new MoveHistoryItem(move, availableMoves.Where(x => !x.Equals(move)).ToList()));
-        }
-
-        /// <summary>
-        /// Represents a <see cref="Move"/> as part of a solution and the other moves that were available at that point.
-        /// Used for back tracking.
-        /// </summary>
-        private class MoveHistoryItem(Move move, List<Move> availableMoves)
-        {
-            public Move Move { get; } = move;
-
-            public List<Move> AvailableMoves { get; } = availableMoves;
         }
     }
 }

@@ -11,7 +11,9 @@ public class CloneTests
     public void EmptyPuzzle_Cloned()
     {
         var originalPuzzle = new Puzzle();
+        
         var clone = originalPuzzle.Clone();
+        
         clone.Should().NotBeNull();
         clone.Should().NotBeSameAs(originalPuzzle);
         clone.Containers.Should().BeEmpty();
@@ -28,7 +30,9 @@ public class CloneTests
     public void PuzzleEmptyContainers_Cloned()
     {
         var originalPuzzle = new Puzzle(new List<Container> { new Container(3, 0), new Container(3, 1), new Container(3, 2) });
+        
         var clone = originalPuzzle.Clone();
+       
         clone.Should().NotBeNull();
         clone.Should().NotBeSameAs(originalPuzzle);
         clone.Containers.Should().BeEquivalentTo(originalPuzzle.Containers);
@@ -45,8 +49,10 @@ public class CloneTests
     [Fact]
     public void PuzzlePopulatedContainers_Cloned()
     {
-        var originalPuzzle = new Puzzle(new List<Container> { new Container(3, 0), new Container(3, 1), new Container(3, 2) });
+        var originalPuzzle = TestHelpers.CreatePuzzleEmptyContainers();
+        
         var clone = originalPuzzle.Clone();
+        
         clone.Should().NotBeNull();
         clone.Should().NotBeSameAs(originalPuzzle);
         clone.Containers.Should().BeEquivalentTo(originalPuzzle.Containers);
@@ -58,4 +64,39 @@ public class CloneTests
         originalPuzzle.Containers[0].Slots.Add(KnownColor.Red);
         clone.Containers[0].Slots.Should().BeEmpty();
     }
+
+
+    [Fact]
+    public void ValidatedPuzzle_Cloned()
+    {
+        var originalPuzzle = TestHelpers.CreatePuzzleEmptyContainers();
+        originalPuzzle.CheckIsValid();
+        
+        var clone = originalPuzzle.Clone();
+        
+        clone.Should().NotBeNull();
+        clone.Should().NotBeSameAs(originalPuzzle);
+        clone.Containers.Should().BeEquivalentTo(originalPuzzle.Containers);
+        clone.Errors.Should().BeEquivalentTo(originalPuzzle.Errors);
+        clone.IsSolved.Should().BeFalse();
+        clone.IsValid.Should().BeFalse();
+    }
+
+
+    [Fact]
+    public void SolvedPuzzle_Cloned()
+    {
+        var originalPuzzle = TestHelpers.CreateValidSolvedPuzzle();
+        originalPuzzle.CheckIsValid();
+
+        var clone = originalPuzzle.Clone();
+        
+        clone.Should().NotBeNull();
+        clone.Should().NotBeSameAs(originalPuzzle);
+        clone.Containers.Should().BeEquivalentTo(originalPuzzle.Containers);
+        clone.Errors.Should().BeEmpty();
+        clone.IsValid.Should().BeTrue();
+        clone.IsSolved.Should().BeTrue();
+    }
+
 }

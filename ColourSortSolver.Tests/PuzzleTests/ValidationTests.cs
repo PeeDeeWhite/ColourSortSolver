@@ -31,12 +31,37 @@ public class ValidationTests
     public void ContainersOfVaryingSize_ReportError()
     {
         var puzzle = new Puzzle();
-        puzzle.Containers.Add(new(4, 0,  [KnownColor.Green, KnownColor.Blue, KnownColor.Crimson]));
-        puzzle.Containers.Add(new(3, 1,  [KnownColor.Green, KnownColor.Blue]));
+        puzzle.Containers.Add(new(4, 0, [KnownColor.Green, KnownColor.Blue, KnownColor.Crimson]));
+        puzzle.Containers.Add(new(3, 1, [KnownColor.Green, KnownColor.Blue]));
 
         puzzle.CheckIsValid();
 
         CheckForError(puzzle, Properties.Resources.PuzzleContainersVaryingSizes);
+    }
+
+    [Fact]
+    public void ContainersDuplicatePositions_ReportError()
+    {
+        var puzzle = new Puzzle();
+        puzzle.Containers.Add(new(3, 1, [KnownColor.Green, KnownColor.Blue, KnownColor.Crimson]));
+        puzzle.Containers.Add(new(3, 1, [KnownColor.Green, KnownColor.Blue, KnownColor.Crimson]));
+
+        puzzle.CheckIsValid();
+
+        CheckForError(puzzle, Properties.Resources.PuzzleContainersPositionNotSequential);
+    }
+
+    [Fact]
+    public void ContainersPositionsNotSequential_ReportError()
+    {
+        var puzzle = new Puzzle();
+        puzzle.Containers.Add(new(3, 0, [KnownColor.Green, KnownColor.Blue, KnownColor.Crimson]));
+        puzzle.Containers.Add(new(3, 5, [KnownColor.Green, KnownColor.Blue, KnownColor.Crimson]));
+        puzzle.Containers.Add(new(3, 6, [KnownColor.Green, KnownColor.Blue, KnownColor.Crimson]));
+
+        puzzle.CheckIsValid();
+
+        CheckForError(puzzle, Properties.Resources.PuzzleContainersPositionNotSequential);
     }
 
     [Fact]

@@ -16,7 +16,7 @@ public class ConstructorTests
     public void PropertiesCorrectlyInitialized(KnownColor colour, int sourceIndex, int destinationIndex, int noOfColours)
     {
 
-        var move = new Move(colour, noOfColours, sourceIndex, destinationIndex);
+        var move = new Move(colour, noOfColours, sourceIndex, 0, destinationIndex, 0);
 
         move.Colour.Should().Be(colour);
         move.NoOfColours.Should().Be(noOfColours);

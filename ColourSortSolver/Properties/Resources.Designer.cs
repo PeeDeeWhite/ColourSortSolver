@@ -106,6 +106,15 @@ namespace ColourSortSolver.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Puzzle Containers must have sequential positions.
+        /// </summary>
+        internal static string PuzzleContainersPositionNotSequential {
+            get {
+                return ResourceManager.GetString("PuzzleContainersPositionNotSequential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Puzzle containers are of varying sizes.
         /// </summary>
         internal static string PuzzleContainersVaryingSizes {

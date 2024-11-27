@@ -12,7 +12,7 @@ public class CloneTests
     {
         var puzzle = TestHelpers.CreatePuzzleOneMoveToComplete();
         var solution = new Solution(puzzle);
-        var move = new Move(KnownColor.Green, 1, 3, 0);
+        var move = new Move(KnownColor.Green, 1, 3, 1, 0, 0);
         solution.Moves.Add(move);
         
         var clone = solution.Clone();
@@ -23,7 +23,7 @@ public class CloneTests
         clone.Moves.Should().BeEquivalentTo(solution.Moves);
 
         //Ensure clone does not have a reference to original
-        solution.Moves[0] = new Move(KnownColor.Red, 1, 3, 0);
+        solution.Moves[0] = new Move(KnownColor.Red, 1, 3, 1, 0, 0);
         clone.Moves[0].Should().BeEquivalentTo(move);
     }
 

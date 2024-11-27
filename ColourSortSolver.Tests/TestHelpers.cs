@@ -21,7 +21,17 @@ public static class TestHelpers
         puzzle.Containers.Add(new(3, 3, [KnownColor.Green]));
         return puzzle;
     }
-    
+
+    public static Puzzle CreatePuzzleMultipleMovesToComplete()
+    {
+        var puzzle = new Puzzle();
+        puzzle.Containers.Add(new(3, 0, [KnownColor.Green, KnownColor.Green]));
+        puzzle.Containers.Add(new(3, 1, [KnownColor.Yellow, KnownColor.Yellow]));
+        puzzle.Containers.Add(new(3, 2, [KnownColor.Crimson, KnownColor.Crimson]));
+        puzzle.Containers.Add(new(3, 3, [KnownColor.Green, KnownColor.Yellow, KnownColor.Crimson]));
+        return puzzle;
+    }
+
     public static Puzzle CreateValidSolvedPuzzle()
     {
         var puzzle = new Puzzle();
