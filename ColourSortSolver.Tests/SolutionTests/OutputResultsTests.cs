@@ -102,7 +102,7 @@ public class OutputResultsTests
         solution.OutputResults(resultsWriter);
 
         resultsWriter.Contains(Properties.Resources.PuzzleValid).Should().BeTrue();
-        resultsWriter.Contains(string.Format(Properties.Resources.PuzzleFailedToSolve)).Should().BeTrue();
+        resultsWriter.Contains(string.Format(Properties.Resources.PuzzleFailedToSolve, 0)).Should().BeTrue();
     }
 }
 

@@ -124,7 +124,7 @@ namespace ColourSortSolver.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to find a solution to the puzzle.
+        ///   Looks up a localized string similar to Failed to find a solution to the puzzle. Total moves attempted {0}.
         /// </summary>
         internal static string PuzzleFailedToSolve {
             get {
@@ -151,7 +151,7 @@ namespace ColourSortSolver.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Puzzle solved: {0} in {1} moves.
+        ///   Looks up a localized string similar to Puzzle solved: {0} in {1} moves. Total moves attempted {2} .
         /// </summary>
         internal static string PuzzleSolvedMoves {
             get {

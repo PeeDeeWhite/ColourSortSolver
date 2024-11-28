@@ -39,7 +39,7 @@ public class LoadAndSolveTests
     {
         var solver = LoadAndSolve(["nomovespuzzle.json"]);
         solver.Solution.IsSolved.Should().BeFalse();
-        _resultsWriter.Contains(Properties.Resources.PuzzleFailedToSolve).Should().BeTrue();
+        _resultsWriter.Contains(string.Format( Properties.Resources.PuzzleFailedToSolve, 0)).Should().BeTrue();
     }
 
     [Fact]
@@ -48,7 +48,7 @@ public class LoadAndSolveTests
         var solver = LoadAndSolve(["validpuzzle.json"]);
         solver.Solution.IsSolved.Should().BeTrue();
         _resultsWriter.Contains(Properties.Resources.PuzzleValid).Should().BeTrue();
-        _resultsWriter.Contains(string.Format(Properties.Resources.PuzzleSolvedMoves, true, 5)).Should().BeTrue();
+        _resultsWriter.Contains(string.Format(Properties.Resources.PuzzleSolvedMoves, true, 5, 6)).Should().BeTrue();
     }
 
     private Solver LoadAndSolve(string[] args)

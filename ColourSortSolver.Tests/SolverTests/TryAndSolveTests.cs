@@ -145,7 +145,7 @@ public class TryAndSolveTests
         solver.Solution.Moves.Count.Should().Be(9);
     }
 
-    [Fact(Skip = "Too Slow for Unit tests")]
+    [Fact(Skip = "")] // Too Slow for Unit tests
     public void LargePuzzleMultipleSolutions_SolvedMinMoves()
     {
         var puzzle = new Puzzle();

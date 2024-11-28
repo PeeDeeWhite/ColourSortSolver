@@ -15,12 +15,13 @@ public class CloneTests
         var move = new Move(KnownColor.Green, 1, 3, 1, 0, 0);
         solution.Moves.Add(move);
         
-        var clone = solution.Clone();
+        var clone = solution.Clone(1);
         clone.Should().NotBeSameAs(solution);
         clone.Puzzle.Should().NotBeSameAs(solution.Puzzle);
         clone.Puzzle.Should().BeEquivalentTo(solution.Puzzle);
         clone.Moves.Should().NotBeSameAs(solution.Moves);
         clone.Moves.Should().BeEquivalentTo(solution.Moves);
+        clone.TotalMoves.Should().Be(1);
 
         //Ensure clone does not have a reference to original
         solution.Moves[0] = new Move(KnownColor.Red, 1, 3, 1, 0, 0);

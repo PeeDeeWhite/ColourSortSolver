@@ -36,6 +36,7 @@
         private void ApplyAvailableMoves()
         {
             var availableMoves = _currentSolution.Puzzle.GetAvailableMoves();
+            var totalMoves = 0;
             while (availableMoves.Any() && !_currentSolution.IsSolved)
             {
                 if (_moveHistory.Count >= _minNoOfMoves - 1)
@@ -55,12 +56,13 @@
                 _moveHistory.Push((move, availableMoves[1..]));
 
                 MoveColour(move);
+                totalMoves++;
 
                 if (_currentSolution.IsSolved)
                 {
                     if (_currentSolution.Moves.Count < _minNoOfMoves)
                     {
-                        Solution = _currentSolution.Clone();
+                        Solution = _currentSolution.Clone(totalMoves);
                         _minNoOfMoves = _currentSolution.Moves.Count;
                     }
 
@@ -77,7 +79,7 @@
             }
 
             // No solution found so return the best solution found so far
-            Solution ??= _currentSolution;
+            Solution ??= _currentSolution.Clone(totalMoves);
         }
 
         private List<Move> BackTrack()
