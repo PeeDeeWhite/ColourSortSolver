@@ -12,6 +12,16 @@ public static class TestHelpers
         puzzle.Containers.Add(new(4, 1));
         return puzzle;
     }
+
+    public static Puzzle CreatePuzzleMismatchedContainers()
+    {
+        var puzzle = new Puzzle();
+        puzzle.Containers.Add(new(4, 0));
+        puzzle.Containers.Add(new(3, 1));
+        puzzle.Containers.Add(new(5, 1));
+        return puzzle;
+    }
+
     public static Puzzle CreatePuzzleOneMoveToComplete()
     {
         var puzzle = new Puzzle();
@@ -22,7 +32,7 @@ public static class TestHelpers
         return puzzle;
     }
 
-    public static Puzzle CreatePuzzleMultipleMovesToComplete()
+    public static Puzzle CreateSimplePuzzleMultipleMovesToComplete()
     {
         var puzzle = new Puzzle();
         puzzle.Containers.Add(new(3, 0, [KnownColor.Green, KnownColor.Green]));
@@ -54,5 +64,4 @@ public static class TestHelpers
 
         return puzzle;
     }
-
 }
