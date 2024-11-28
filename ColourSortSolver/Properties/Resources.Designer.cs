@@ -124,6 +124,15 @@ namespace ColourSortSolver.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to find a solution to the puzzle.
+        /// </summary>
+        internal static string PuzzleFailedToSolve {
+            get {
+                return ResourceManager.GetString("PuzzleFailedToSolve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Puzzle is invalid due to the following errors:.
         /// </summary>
         internal static string PuzzleInvalidWithErrors {
@@ -142,7 +151,7 @@ namespace ColourSortSolver.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Puzzle solved: {0} in {1}.
+        ///   Looks up a localized string similar to Puzzle solved: {0} in {1} moves.
         /// </summary>
         internal static string PuzzleSolvedMoves {
             get {

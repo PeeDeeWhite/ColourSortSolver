@@ -59,6 +59,19 @@ public class TryAndSolveTests
         solver.Solution.Puzzle.Errors.Should().BeEmpty();
     }
 
+    [Fact]
+    public void ValidPuzzleNoAvailableMoves_FailToSolve()
+    {
+        var puzzle = TestHelpers.CreatePuzzleNoAvailableMoves();
+        var solver = new Solver(puzzle);
+
+        solver.TryAndSolve();
+
+        solver.Solution.IsSolved.Should().BeFalse();
+        solver.Solution.Moves.Should().BeEmpty();
+        solver.Solution.Puzzle.Errors.Should().BeEmpty();
+    }
+
     [Fact(Skip = "Ignore from automated runs")]
     public void LargePuzzleMultipleSolutions_SolvedMinMoves()
     {

@@ -5,28 +5,28 @@
       "Position": 0,
       "Slots": [
         "Red",
-        "Orange",
-        "Salmon",
-        "Green"
+        "Red",
+        "Red",
+        "Red"
       ]
     },
     {
       "Size": 4,
       "Position": 1,
       "Slots": [
-        "Red",
         "Orange",
-        "Salmon",
-        "Green"
+        "Orange",
+        "Orange",
+        "Orange"
       ]
     },
     {
       "Size": 4,
       "Position": 2,
       "Slots": [
-        "Red",
-        "Orange",
-        "Salmon",
+        "Green",
+        "Green",
+        "Green",
         "Green"
       ]
     },
@@ -34,10 +34,10 @@
       "Size": 4,
       "Position": 3,
       "Slots": [
-        "Red",
-        "Orange",
         "Salmon",
-        "Green"
+        "Salmon",
+        "Salmon",
+        "Salmon"
       ]
     },
     {

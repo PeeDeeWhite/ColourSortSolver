@@ -28,9 +28,9 @@ namespace ColourSortSolver.Tests.PuzzleLoaderTests
         }
 
         [Fact]
-        public void InvalidJson_ReturnsEmptyPuzzle()
+        public void EmptyJson_ReturnsEmptyPuzzle()
         {
-            var puzzle = PuzzleLoader.LoadFromJsonFile(".\\PuzzleLoaderTests\\invalidpuzzle.json");
+            var puzzle = PuzzleLoader.LoadFromJsonFile(".\\emptypuzzle.json");
 
             puzzle.Should().NotBeNull();
             puzzle.Containers.Should().BeEmpty();
@@ -40,18 +40,17 @@ namespace ColourSortSolver.Tests.PuzzleLoaderTests
         [Fact]
         public void ValidFile_ReturnsHydratedPuzzle()
         {
-            var puzzle = PuzzleLoader.LoadFromJsonFile(".\\PuzzleLoaderTests\\validpuzzle.json");
+            var puzzle = PuzzleLoader.LoadFromJsonFile(".\\validpuzzle.json");
 
             puzzle.Should().NotBeNull();
             puzzle.Containers.Should().NotBeEmpty();
             puzzle.Errors.Should().BeEmpty();
-            for (var index = 0; index < 4; index++)
+            for (var index = 0; index < 3; index++)
             {
                 var container = puzzle.Containers[index];
-                container.Slots.Should().BeEquivalentTo((List<KnownColor>) [KnownColor.Red, KnownColor.Orange, KnownColor.Salmon, KnownColor.Green]);
+                container.IsFull.Should().BeTrue();
             }
-            puzzle.Containers[4].Slots.Should().BeEmpty();
-            puzzle.Containers[5].Slots.Should().BeEmpty();
+            puzzle.Containers[3].Slots.Should().BeEmpty();
         }
     }
 }

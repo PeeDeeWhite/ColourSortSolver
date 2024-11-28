@@ -148,12 +148,15 @@
     <value>Puzzle is valid.</value>
   </data>
   <data name="PuzzleSolvedMoves" xml:space="preserve">
-    <value>Puzzle solved: {0} in {1}</value>
+    <value>Puzzle solved: {0} in {1} moves</value>
   </data>
   <data name="Moves" xml:space="preserve">
     <value>Moves:</value>
   </data>
   <data name="PuzzleContainersPositionNotSequential" xml:space="preserve">
     <value>Puzzle Containers must have sequential positions</value>
+  </data>
+  <data name="PuzzleFailedToSolve" xml:space="preserve">
+    <value>Failed to find a solution to the puzzle</value>
   </data>
 </root>

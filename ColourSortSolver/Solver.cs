@@ -75,6 +75,9 @@
                     availableMoves = BackTrack(); // If cycling round and repeating a move then back track.
                 }
             }
+
+            // No solution found so return the best solution found so far
+            Solution ??= _currentSolution;
         }
 
         private List<Move> BackTrack()

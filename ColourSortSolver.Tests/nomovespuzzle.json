@@ -1,0 +1,31 @@
+{
+  "Containers": [
+    {
+      "Size": 3,
+      "Position": 0,
+      "Slots": [
+        "Red",
+        "Orange",
+        "Green"
+      ]
+    },
+    {
+      "Size": 3,
+      "Position": 1,
+      "Slots": [
+        "Orange",
+        "Orange",
+        "Red"
+      ]
+    },
+    {
+      "Size": 3,
+      "Position": 2,
+      "Slots": [
+        "Green",
+        "Green",
+        "Red"
+      ]
+    }
+  ] 
+}

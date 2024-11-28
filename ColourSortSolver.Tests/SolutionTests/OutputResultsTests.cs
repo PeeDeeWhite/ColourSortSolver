@@ -97,14 +97,12 @@ public class OutputResultsTests
 
         var solution = new Solution(puzzle);
         solution.Puzzle.CheckIsValid();
-        solution.Moves.Add(new(KnownColor.Blue, 1, 0, 4, 4, 0));
 
         var resultsWriter = new TestResultsWriter();
         solution.OutputResults(resultsWriter);
 
         resultsWriter.Contains(Properties.Resources.PuzzleValid).Should().BeTrue();
-        resultsWriter.Contains(string.Format(Properties.Resources.PuzzleSolvedMoves, false, 1)).Should().BeTrue();
-        resultsWriter.Contains(solution.Moves.First().ToString()).Should().BeTrue();
+        resultsWriter.Contains(string.Format(Properties.Resources.PuzzleFailedToSolve)).Should().BeTrue();
     }
 }
 

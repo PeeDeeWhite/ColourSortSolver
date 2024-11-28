@@ -45,4 +45,14 @@ public static class TestHelpers
         return puzzle;
     }
 
+    public static Puzzle CreatePuzzleNoAvailableMoves()
+    {
+        var puzzle = new Puzzle();
+        puzzle.Containers.Add(new(3, 0, [KnownColor.Green, KnownColor.Green, KnownColor.Yellow]));
+        puzzle.Containers.Add(new(3, 1, [KnownColor.Yellow, KnownColor.Yellow, KnownColor.Crimson]));
+        puzzle.Containers.Add(new(3, 2, [KnownColor.Crimson, KnownColor.Crimson, KnownColor.Green]));
+
+        return puzzle;
+    }
+
 }

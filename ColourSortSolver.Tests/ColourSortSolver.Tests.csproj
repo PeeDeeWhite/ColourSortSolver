@@ -34,10 +34,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="PuzzleLoaderTests\invalidpuzzle.json">
+    <None Update="emptypuzzle.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="PuzzleLoaderTests\validpuzzle.json">
+    <None Update="invalidpuzzle.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="solvedpuzzle.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="nomovespuzzle.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="validpuzzle.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

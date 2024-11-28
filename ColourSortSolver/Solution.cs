@@ -50,12 +50,19 @@ public class Solution
         }
 
         writer.WriteLine(Properties.Resources.PuzzleValid);
-        writer.WriteLine(Properties.Resources.PuzzleSolvedMoves, IsSolved, Moves.Count);
-        writer.WriteLine(Properties.Resources.Moves);
-
-        foreach (var move in Moves)
+        if (IsSolved)
         {
-            writer.WriteLine(move.ToString());
+            writer.WriteLine(Properties.Resources.PuzzleSolvedMoves, IsSolved, Moves.Count);
+            writer.WriteLine(Properties.Resources.Moves);
+
+            foreach (var move in Moves)
+            {
+                writer.WriteLine(move.ToString());
+            }
+        }
+        else
+        {
+            writer.WriteLine(Properties.Resources.PuzzleFailedToSolve);
         }
     }
 
