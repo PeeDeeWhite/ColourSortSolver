@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+// ReSharper disable LocalizableElement
 
 namespace ColourSortSolver.Console
 {
@@ -21,6 +22,10 @@ namespace ColourSortSolver.Console
         {
             var puzzle = PuzzleLoader.LoadFromJsonFile(filename);
             var solver = new Solver(puzzle);
+            solver.SolutionFound += (_, args) =>
+            {
+                Console.WriteLine($"Solution found taking {args.Moves} moves after {args.TimeTaken} and {args.TotalMoves} moves.");
+            };
             solver.TryAndSolve();
             return solver.Solution;
         }

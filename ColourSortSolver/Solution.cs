@@ -9,7 +9,7 @@ public class Solution
     private readonly Puzzle _startingPosition; // keep copy of original puzzle
 
 
-    public Solution(Puzzle puzzle) : this (puzzle, puzzle, 0)
+    public Solution(Puzzle puzzle) : this (puzzle, puzzle)
     {
     }
 
@@ -19,18 +19,15 @@ public class Solution
     /// </summary>
     /// <param name="puzzle">Current progress of solution</param>
     /// <param name="startingPuzzle">original starting position of puzzle</param>
-    /// <param name="totalMoves"></param>
-    private Solution(Puzzle puzzle, Puzzle startingPuzzle, int totalMoves)
+    private Solution(Puzzle puzzle, Puzzle startingPuzzle)
     {
         _startingPosition = startingPuzzle;
         Puzzle = puzzle;
-        TotalMoves = totalMoves;
     }
 
     public bool IsSolved => Puzzle.IsSolved;
     public Puzzle Puzzle { get; }
-    public int TotalMoves { get; }
-    public List<Move> Moves {get;} = new List<Move>();
+    public List<Move> Moves {get;} = [];
 
     public void RevertLastMove()
     {
@@ -55,7 +52,7 @@ public class Solution
         writer.WriteLine(Properties.Resources.PuzzleValid);
         if (IsSolved)
         {
-            writer.WriteLine(Properties.Resources.PuzzleSolvedMoves, IsSolved, Moves.Count, TotalMoves);
+            writer.WriteLine(Properties.Resources.PuzzleSolvedMoves, IsSolved, Moves.Count);
             writer.WriteLine(Properties.Resources.Moves);
 
             foreach (var move in Moves)
@@ -65,14 +62,14 @@ public class Solution
         }
         else
         {
-            writer.WriteLine(Properties.Resources.PuzzleFailedToSolve, TotalMoves);
+            writer.WriteLine(Properties.Resources.PuzzleFailedToSolve);
         }
     }
 
-    public Solution Clone(int totalMoves)
+    public Solution Clone()
     {
         var clonedPuzzle = Puzzle.Clone();
-        var solution = new Solution(clonedPuzzle, _startingPosition.Clone(), totalMoves);
+        var solution = new Solution(clonedPuzzle, _startingPosition.Clone());
         solution.Moves.AddRange(Moves);
         return solution;
     }

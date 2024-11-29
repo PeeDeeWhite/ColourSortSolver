@@ -1,5 +1,4 @@
-﻿using ColourSortSolver.Console;
-using ColourSortSolver.Tests.SolutionTests;
+﻿using ColourSortSolver.Tests.SolutionTests;
 using FluentAssertions;
 
 namespace ColourSortSolver.Tests.IntegrationTests;

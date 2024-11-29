@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using FluentAssertions;
 
 namespace ColourSortSolver.Tests.PuzzleLoaderTests
