@@ -9,7 +9,7 @@ namespace ColourSortSolver.Tests.SolverTests;
 public class FourSlotPuzzlesTryAndSolveTests(ITestOutputHelper testOutputHelper)
 {
     // Comment out to enable tests
-     private class FactAttribute : Attribute { }
+    //private class FactAttribute : Attribute { }
 
     /// <summary>
     /// 4 colours, 4 containers, 1 empty
@@ -18,7 +18,7 @@ public class FourSlotPuzzlesTryAndSolveTests(ITestOutputHelper testOutputHelper)
     /// Solution found with 18 moves in 00:00:00.0047498. Total moves: 25
     /// Solution found with 17 moves in 00:00:00.0055710. Total moves: 72
     /// Solution found with 16 moves in 00:00:00.8894127. Total moves: 83814
-    /// Solved in 00:03:40.5865358 using 31760751 moves
+    /// Solved in 00:02:03.7717862 using 31760751 moves
     /// </summary>
     [Fact] 
     public void SixColoursEightContainersTwoEmpty_SolvedMinMoves()
@@ -42,7 +42,7 @@ public class FourSlotPuzzlesTryAndSolveTests(ITestOutputHelper testOutputHelper)
     /// Solution found with 21 moves in 00:00:00.0030551. Total moves: 25
     /// Solution found with 20 moves in 00:00:00.0044679. Total moves: 28
     /// Solution found with 19 moves in 00:00:00.0046731. Total moves: 37
-    /// Solved in 00:00:40.5909083 using 4613135 moves
+    /// Solved in 00:00:21.2942115 using 4613135 move
     /// </summary>
     [Fact]
     public void EightColoursTenContainersOneEmpty_SolvedMinMoves()
@@ -72,8 +72,7 @@ public class FourSlotPuzzlesTryAndSolveTests(ITestOutputHelper testOutputHelper)
     /// Solution found with 26 moves in 00:00:00.2887871. Total moves: 13084
     /// Solution found with 25 moves in 00:00:03.3297421. Total moves: 341879
     /// Solution found with 24 moves in 00:00:05.6627204. Total moves: 590176
-    ///
-    /// NOTE: not left it running long enough to complete
+    /// Solved in 00:17:26.2129324 using 202579173 moves
     /// </summary>
     [Fact]
     public void TenColoursTwelveContainersNoneEmpty_SolvedMinMoves()
